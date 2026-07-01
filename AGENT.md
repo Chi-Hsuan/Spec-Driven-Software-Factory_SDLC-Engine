@@ -1,36 +1,36 @@
-# 🧠 Spec-Driven Software Factory (SDLC Engine)
+# 🧠 Spec-Driven Software Factory（SDLC 引擎）
 
-This system defines a **Spec-Driven Development (SDD)** workflow using multiple specialized agents to execute the full Software Development Life Cycle (SDLC).
+本系統定義了一套 **Spec-Driven Development（SDD）** 工作流程，透過多個專職 Agent 執行完整的 Software Development Life Cycle（SDLC）。
 
-The system is designed to be:
-- project-agnostic
-- spec-first (not code-first)
-- Figma-supported UI pipeline
-- fully traceable from requirement → release
+系統設計目標：
+- project-agnostic（專案無關）
+- spec-first（規格優先），而非 code-first
+- 支援 Figma 的 UI 流程
+- 從需求到發布全程可追溯
 
 ---
 
-# 🧩 0. Core Design Principles
+# 🧩 0. 核心設計原則
 
 ## 1. Spec is the Source of Truth
-All implementation must follow structured specifications.
+所有實作都必須遵循結構化的規格文件。
 
 ## 2. Agents are Stateless
-Agents do not store project memory. They only process inputs → outputs.
+Agent 不儲存專案記憶，僅處理輸入 → 輸出。
 
 ## 3. No Cross-Agent Decision Making
-Each agent has a strict boundary of responsibility.
+每個 Agent 都有嚴格的職責邊界。
 
 ## 4. UI is defined before implementation
-Figma is the UI truth layer.
+Figma 是 UI 的真實來源層。
 
 ---
 
-# 📦 1. Project Context Pack (PCP)
+# 📦 1. Project Context Pack（PCP）
 
 ## 🎯 Purpose
 
-PCP defines the project context that all agents rely on.
+PCP 定義所有 Agent 都依賴的專案脈絡。
 
 ## 📁 Structure
 ```
@@ -50,15 +50,12 @@ pcp/
 
 ## 🎯 Responsibility
 
-Convert raw idea → structured product requirements.
+將原始構想（raw idea）轉換為結構化的產品需求。
 
 ## 📦 Outputs
 ```
 specs/00-requirement/
 ├── srs.md
-├── user-stories.md
-├── nfr.md
-├── scope.md
 ```
 ## 📥 Inputs
 
@@ -68,65 +65,61 @@ specs/00-requirement/
 
 ---
 
-# 🎨 3. UX/UI System (Dual Layer)
+# 🎨 3. UX/UI System（雙層架構）
 
 ---
 
-## 🎨 3.1 UX/UI Agent (Human-like Design)
+## 🎨 3.1 UX/UI Agent（Human-like Design）
 
 ### 🎯 Responsibility
 
-Design user experience and UI structure BEFORE Figma.
+在 Figma 之前，設計使用者體驗與 UI 結構。
 
 ### 📦 Outputs
 ```
 specs/01-ui/
 ├── user-flow.md
 ├── wireframe.md
-├── interaction-model.md
 ├── component-map.md
 ```
 ### 📥 Inputs
 
 - srs.md
-- user-stories.md
 - pcp/
 
 ### 🚫 Not responsible for:
 
 - Figma parsing
 - design tokens
-- pixel-level UI
+- 像素級 UI 細節
 
 ---
 
-## 🔄 3.2 UI Spec Generator (System-level)
+## 🔄 3.2 UI Spec Generator（System-level）
 
 ### 🎯 Responsibility
 
-Convert Figma → structured UI specification.
+將 Figma 轉換為結構化的 UI 規格。
 
 ### 📦 Outputs
 ```
 specs/01-ui/
 ├── ui-spec.md
-├── screen-list.md
+├── screen-spec.md
 ├── component-spec.md
-├── layout-rules.md
-├── interaction-spec.md
 ├── design-tokens.json
 ```
 
 ### 📥 Inputs
 
-- Figma (source of truth)
-- UX/UI artifacts (reference only)
+- Figma（source of truth）
+- UX/UI Agent 產出物（僅供參考）
 
 ### 🚫 Not responsible for:
 
 - UX design
 - user flows
-- product logic
+- 產品邏輯
 
 ---
 
@@ -134,7 +127,7 @@ specs/01-ui/
 
 ## 🎯 Responsibility
 
-Design system architecture based on specs.
+依據規格設計系統架構。
 
 ## 📦 Outputs
 ```
@@ -158,7 +151,7 @@ specs/02-architecture/
 
 ## 🎯 Responsibility
 
-Define API contract between frontend and backend.
+定義前後端之間的 API 合約。
 
 ## 📦 Outputs
 ```
@@ -180,7 +173,7 @@ specs/03-api/
 
 ## 🎯 Responsibility
 
-Design data models and persistence layer.
+設計資料模型與持久層。
 
 ## 📦 Outputs
 ```
@@ -202,7 +195,7 @@ specs/04-data/
 
 ## 🎯 Responsibility
 
-Define security model and risk analysis.
+定義安全模型與風險分析。
 
 ## 📦 Outputs
 ```
@@ -223,11 +216,11 @@ specs/05-security/
 
 ## 🎯 Responsibility
 
-Implement backend based on specs.
+依據規格實作後端。
 
 ## 📦 Outputs
 
-- backend source code
+- backend 原始碼
 - implementation-notes.md
 
 ## 📥 Inputs
@@ -243,12 +236,12 @@ Implement backend based on specs.
 
 ## 🎯 Responsibility
 
-Implement UI based strictly on UI spec + design tokens.
+嚴格依據 UI spec 與 design tokens 實作 UI。
 
 ## 📦 Outputs
 
-- frontend source code
-- component implementation notes
+- frontend 原始碼
+- 元件實作筆記
 
 ## 📥 Inputs
 
@@ -263,7 +256,7 @@ Implement UI based strictly on UI spec + design tokens.
 
 - UI design decisions
 - UX flow changes
-- visual creativity
+- 視覺創意發想
 
 ---
 
@@ -271,7 +264,7 @@ Implement UI based strictly on UI spec + design tokens.
 
 ## 🎯 Responsibility
 
-Generate test strategy and test implementation.
+產出測試策略與測試實作。
 
 ## 📦 Outputs
 ```
@@ -284,8 +277,8 @@ specs/06-test/
 
 ## 📥 Inputs
 
-- all specs
-- backend/frontend code
+- 所有 specs
+- backend/frontend 程式碼
 
 ---
 
@@ -293,7 +286,7 @@ specs/06-test/
 
 ## 🎯 Responsibility
 
-Ensure system consistency and release readiness.
+確保系統一致性與 release 就緒狀態。
 
 ## 📦 Outputs
 ```
@@ -305,7 +298,7 @@ specs/07-release/
 
 ## 📥 Inputs
 
-- all specs
+- 所有 specs
 - codebase
 
 ---
@@ -316,7 +309,7 @@ Requirement Agent
 ↓
 UX/UI Agent
 ↓
-Figma (design truth layer)
+Figma（design truth layer）
 ↓
 UI Spec Generator
 ↓
@@ -346,7 +339,7 @@ Review & Release Agent
 
 ## ✔ Single Responsibility Rule
 
-Each agent:
+每個 Agent：
 > transforms input → output spec/code only
 
 ---
@@ -366,22 +359,21 @@ Each agent:
 
 # 🚀 15. Framework Goal
 
-This system enables:
+本系統可實現：
 
-- Spec-driven development (SDD)
-- Cross-project reusability
+- Spec-driven development（SDD）
+- 跨專案可重用性
 - Figma-based UI pipeline
-- deterministic engineering output
+- 具確定性的工程輸出
 - AI-assisted SDLC automation
 
 ---
 
 # 🧩 16. Extensibility
 
-This system can be extended with:
+本系統可擴充以下功能：
 
-- MCP integrations (Figma, GitHub, DB)
+- MCP integrations（Figma、GitHub、DB）
 - CI/CD automation
-- Auto code generation pipelines
+- 自動程式碼生成流程
 - Agent orchestration engine
-
