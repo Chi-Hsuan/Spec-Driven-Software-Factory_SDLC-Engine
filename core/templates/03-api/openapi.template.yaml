@@ -1,0 +1,159 @@
+# openapi.yaml = API Contract，唯一真實來源（source of truth）。
+# 不要放：
+# - 為什麼這樣設計 / 共通規則 → api-design.md
+# - 業務錯誤碼的完整列舉與處理方式 → error-codes.md（此處只用 $ref 指向共用 error schema）
+# - 跨服務流程 → sequence-diagrams.md
+#
+# 規則：
+# - operationId 必須是 kebab-case 或 camelCase 其中一種，且必須與 system-design.md 的
+#   「API Flow」表格、sequence-diagrams.md 的流程圖使用同一組 operationId，才能互相追溯
+# - 每個 error response 一律 $ref components/schemas/Error，實際錯誤碼列舉放 error-codes.md
+
+openapi: 3.0.3
+
+info:
+  title: ""
+  version: 0.1.0
+  description: ""
+
+servers:
+  - url: https://api.example.com/v1
+    description: ""
+
+paths:
+  /resources:
+    get:
+      operationId: listResources
+      summary: ""
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResourceList"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+    post:
+      operationId: createResource
+      summary: ""
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ResourceInput"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Resource"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+
+  /resources/{id}:
+    get:
+      operationId: getResource
+      summary: ""
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Resource"
+        "404":
+          $ref: "#/components/responses/NotFound"
+
+components:
+  schemas:
+    Resource:
+      type: object
+      properties:
+        id:
+          type: string
+        # 其餘欄位對應 specs/04-data/data-model.md 的 entity 定義，不在此重複設計
+
+    ResourceInput:
+      type: object
+      required:
+        - <field>
+      properties:
+        <field>:
+          type: string
+
+    ResourceList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/Resource"
+        page:
+          type: integer
+        pageSize:
+          type: integer
+        total:
+          type: integer
+
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          description: 對應 error-codes.md 的 error_code
+        message:
+          type: string
+        details:
+          type: object
+
+  responses:
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+    NotFound:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - bearerAuth: []

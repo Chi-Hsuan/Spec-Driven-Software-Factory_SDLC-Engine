@@ -50,7 +50,7 @@ pcp/
 
 ## 🎯 Responsibility
 
-將原始構想（raw idea）轉換為結構化的產品需求。
+將使用者需求轉換為結構化需求規格（SRS），作為整個系統的唯一需求來源
 
 ## 📦 Outputs
 ```
@@ -59,35 +59,29 @@ specs/00-requirement/
 ```
 ## 📥 Inputs
 
-- user idea
-- business goals
-- PCP
+- User input
+- Business context
 
----
 
-# 🎨 3. UX/UI System（雙層架構）
+# 🎨 3 UX/UI Agent（Human-like Design）
 
----
+## 🎯 Responsibility
 
-## 🎨 3.1 UX/UI Agent（Human-like Design）
+將需求轉換為使用者流程與介面結構（user behavior + UI structure）
 
-### 🎯 Responsibility
-
-在 Figma 之前，設計使用者體驗與 UI 結構。
-
-### 📦 Outputs
+## 📦 Outputs
 ```
 specs/01-ui/
 ├── user-flow.md
 ├── wireframe.md
 ├── component-map.md
 ```
-### 📥 Inputs
+## 📥 Inputs
 
 - srs.md
 - pcp/
 
-### 🚫 Not responsible for:
+## 🚫 Not responsible for:
 
 - Figma parsing
 - design tokens
@@ -95,13 +89,13 @@ specs/01-ui/
 
 ---
 
-## 🔄 3.2 UI Spec Generator（System-level）
+# 🔄 4. UI Spec Generator Agent（System-level）
 
-### 🎯 Responsibility
+## 🎯 Responsibility
 
-將 Figma 轉換為結構化的 UI 規格。
+將 UX/UI 與 Figma 設計轉換為可實作的 UI 技術規格
 
-### 📦 Outputs
+## 📦 Outputs
 ```
 specs/01-ui/
 ├── ui-spec.md
@@ -110,12 +104,12 @@ specs/01-ui/
 ├── design-tokens.json
 ```
 
-### 📥 Inputs
+## 📥 Inputs
 
 - Figma（source of truth）
 - UX/UI Agent 產出物（僅供參考）
 
-### 🚫 Not responsible for:
+## 🚫 Not responsible for:
 
 - UX design
 - user flows
@@ -123,18 +117,17 @@ specs/01-ui/
 
 ---
 
-# 🏗 4. Architecture Agent
+# 🏗 5. Architecture Agent
 
 ## 🎯 Responsibility
 
-依據規格設計系統架構。
+將需求轉換為系統架構設計與技術藍圖
 
 ## 📦 Outputs
 ```
 specs/02-architecture/
 ├── architecture.md
 ├── system-design.md
-├── tech-decisions.md
 ├── task-list.yaml
 ├── adr/
 ```
@@ -147,7 +140,7 @@ specs/02-architecture/
 
 ---
 
-# 🌐 5. API Agent
+# 🌐 6. API Agent
 
 ## 🎯 Responsibility
 
@@ -157,7 +150,7 @@ specs/02-architecture/
 ```
 specs/03-api/
 ├── openapi.yaml
-├── api-spec.md
+├── api-design.md
 ├── error-codes.md
 ├── sequence-diagrams.md
 ```
@@ -169,7 +162,7 @@ specs/03-api/
 
 ---
 
-# 🗄 6. Data Agent
+# 🗄 7. Data Agent
 
 ## 🎯 Responsibility
 
@@ -191,28 +184,30 @@ specs/04-data/
 
 ---
 
-# 🔐 7. Security Agent
+# 🔐 8. Security Agent
 
 ## 🎯 Responsibility
 
-定義安全模型與風險分析。
+依據既有 Spec，找出安全風險並提出修正建議。
 
 ## 📦 Outputs
 ```
 specs/05-security/
 ├── threat-model.md
 ├── security-review.md
-├── auth-design.md
+├── security-requirements.md
 ```
 
 ## 📥 Inputs
 
+- srs.md
 - architecture.md
-- api-spec.md
+- openapi.yaml
+- data-model.md
 
 ---
 
-# ⚙️ 8. Backend Code Agent
+# ⚙️ 9. Backend Code Agent
 
 ## 🎯 Responsibility
 
@@ -232,7 +227,7 @@ specs/05-security/
 
 ---
 
-# 🎯 9. Frontend Code Agent
+# 🎯 10. Frontend Code Agent
 
 ## 🎯 Responsibility
 
@@ -260,7 +255,7 @@ specs/05-security/
 
 ---
 
-# 🧪 10. Test Agent
+# 🧪 11. Test Agent
 
 ## 🎯 Responsibility
 
@@ -282,11 +277,11 @@ specs/06-test/
 
 ---
 
-# 🚀 11. Review & Release Agent
+# 🚀 12. Review & Release Agent
 
 ## 🎯 Responsibility
 
-確保系統一致性與 release 就緒狀態。
+整合所有規格、測試與驗證結果，進行最終審查與發佈決策。
 
 ## 📦 Outputs
 ```
@@ -303,7 +298,7 @@ specs/07-release/
 
 ---
 
-# 🔁 12. Full SDLC Workflow
+# 🔁 13. Full SDLC Workflow
 ```
 Requirement Agent
 ↓
@@ -326,7 +321,7 @@ Review & Release Agent
 
 ---
 
-# ⚖️ 13. Strict Boundary Rules
+# ⚖️ 14. Strict Boundary Rules
 
 ## ❌ No overlap principle
 
@@ -344,20 +339,40 @@ Review & Release Agent
 
 ---
 
-# 🧠 14. Source of Truth Hierarchy
+# 🧠 14. SDLC Engine - Agent Matrix
 
-| Layer | Source |
-|------|--------|
-| Product Logic | SRS |
-| UX Flow | UX/UI Agent |
-| UI Implementation Spec | Figma + UI Spec Generator |
-| Architecture | Architecture Agent |
-| API | API Spec |
-| Code | Implementation Agents |
+| Agent | Responsibility | Input| Output                                                                    |
+| ---------------------- | ---------------------------------------------------- | ----------------------------------------------- | ------------------------------------------------------------------------- |
+| Requirement Agent      | 將使用者需求轉換為結構化需求規格（SRS），作為整個系統的唯一需求來源 | User input、Business context                     | `srs.md`                                     |
+| UX/UI Agent            | 將需求轉換為使用者流程與介面結構（user behavior + UI structure）       | srs.md                        | `user-flow.md`, `wireframe.md`, `component-map.md`                        |
+| UI Spec Generator      | 將 UX/UI 與 Figma 設計轉換為可實作的 UI 技術規格                    | figma design, wireframe.md, component-map.md    | `ui-spec.md`, `component-spec.md`, `design-tokens.json`                   |
+| Architecture Agent     | 將需求轉換為系統架構設計與技術藍圖                                    | srs.md, nfr.md                                  | `architecture.md`, `system-design.md`, `adr/*.md`, `task-list.yaml`       |
+| API Agent              | 定義前後端溝通契約與 API 規格                                    | system-design.md, architecture.md               | `openapi.yaml`, `api-design.md`, `error-codes.md`, `sequence-diagrams.md` |
+| Data Agent             | 將資料需求轉換為資料模型與資料庫設計                                   | system-design.md, api-spec, srs.md              | `data-model.md`, `schema.sql`, `erd.mmd`, `migration-plan.md`             |
+| Security Agent         | 針對所有設計進行安全分析與風險審查，提出安全需求與修正建議                        | srs.md, architecture.md, api spec, data model   | `threat-model.md`, `security-review.md`, `security-requirements.md`       |
+| Test Agent             | 根據規格建立驗證策略與測試案例，確保系統符合需求與品質標準                        | srs.md, openapi.yaml, ui spec, architecture.md  | `test-plan.md`, `test-cases.md`, `e2e/`, `test-report.md`                 |
+| Review & Release Agent | 整合所有規格、測試與驗證結果，進行最終審查與發佈決策                           | all specs + test-report.md + security-review.md | `release-notes.md`, `traceability-matrix.md`, `final-review.md`           |
 
 ---
 
-# 🚀 15. Framework Goal
+# 🧠 15. Source of Truth Hierarchy
+
+| Layer | Source |
+|------|--------|
+| Requirement | SRS（Requirement Agent） |
+| UX Flow | UX/UI Agent |
+| UI Implementation Spec | Figma + UI Spec Generator |
+| Architecture / System Design | Architecture Agent |
+| API Contract | API Agent（openapi.yaml） |
+| Data Model | Data Agent（data-model.md / schema.sql） |
+| Security Requirements | Security Agent |
+| Code | Backend / Frontend Code Agent |
+| Test Strategy & Result | Test Agent |
+| Release Decision | Review & Release Agent |
+
+---
+
+# 🚀 16. Framework Goal
 
 本系統可實現：
 
@@ -369,7 +384,7 @@ Review & Release Agent
 
 ---
 
-# 🧩 16. Extensibility
+# 🧩 17. Extensibility
 
 本系統可擴充以下功能：
 

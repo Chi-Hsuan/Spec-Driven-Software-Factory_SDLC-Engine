@@ -1,0 +1,19 @@
+# task-list.yaml = 實作拆解，只講 implementation steps。
+# 不要放：
+# - 設計怎麼做 → 那是 system-design.md 的職責，這裡用 module_ref 引用即可
+# - 為什麼這樣做 → 那是 adr/ 的職責，這裡用 adr_ref 引用即可
+# - 系統長怎樣 → 那是 architecture.md 的職責
+#
+# 每個 task 都必須可以被 backend/frontend code agent 直接執行，不需要再回頭查設計理由。
+
+tasks:
+  - id: task-0001
+    title: ""
+    module_ref: comp-api          # 對應 system-design.md 的 module_id
+    adr_ref: []                    # 相關決策，例如 [adr-0001]，沒有則留空陣列
+    depends_on: []                 # 其他 task id
+    type: backend                  # backend / frontend / data / infra / test
+    description: ""                # 純實作步驟，例如「建立 /users POST endpoint」
+    acceptance_criteria:
+      - ""
+    status: todo                   # todo / in-progress / done / blocked

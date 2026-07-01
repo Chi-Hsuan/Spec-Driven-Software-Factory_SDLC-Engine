@@ -1,43 +1,36 @@
 # Engine Rules
 
-These rules define the immutable principles of the Spec-Driven Software Factory (SDLC Engine).
+這些規則定義了 Spec-Driven Software Factory（SDLC Engine）不可變的核心原則。
 
-All agents must comply with these rules.
+所有 Agent 都必須遵守這些規則。
 
 ---
 
 # Rule 1 — Spec First
 
-Specifications are the single source of truth.
+Specification 是唯一真實來源（single source of truth）。
 
-Implementation must always follow approved specifications.
+實作必須永遠遵循已核准的規格。
 
-Agents must never implement features that are not defined in specifications.
+Agent 絕不能實作規格中未定義的功能。
 
 ---
 
 # Rule 2 — Single Source of Truth
 
-Every artifact has exactly one authoritative owner.
+每個 artifact 都有且僅有一個具權威性的 owner。
 
-Examples:
+各 artifact 對應 owner 請見 core/rules/ARTIFACT_RULES.md
 
-- Product requirements → SRS
-- User experience → UX artifacts
-- Visual UI → Figma
-- UI implementation → UI Specification
-- API → OpenAPI
-- Data model → ERD / Schema
-
-Agents must never create competing versions of the same artifact.
+Agent 絕不能為同一份 artifact 建立互相競爭的版本。
 
 ---
 
 # Rule 3 — Frozen Specifications
 
-Once an artifact is approved, downstream agents may consume it but must not modify it.
+一旦 artifact 被核准，下游 Agent 可以使用它，但不得修改它。
 
-Example:
+範例：
 
 Figma
 ↓
@@ -45,13 +38,13 @@ UI Spec Generator
 ↓
 Frontend Agent
 
-Frontend Agent may implement the UI but may not redesign it.
+Frontend Agent 可以實作 UI，但不能重新設計它。
 
 ---
 
 # Rule 4 — Traceability
 
-Every artifact must be traceable.
+每個 artifact 都必須可追溯。
 
 Requirement
 → Design
@@ -61,42 +54,42 @@ Requirement
 → Test
 → Release
 
-No implementation should exist without an upstream specification.
+不應存在沒有上游規格支撐的實作。
 
 ---
 
 # Rule 5 — Deterministic Outputs
 
-Given identical inputs and project context, an agent should produce functionally equivalent outputs.
+在相同的輸入與專案脈絡下，Agent 應產出功能上等價的輸出。
 
-Agents should avoid unnecessary creativity when generating specifications.
+Agent 在產生規格時應避免不必要的創意發揮。
 
 ---
 
 # Rule 6 — Layer Separation
 
-Design decisions belong to design artifacts.
+設計決策屬於 design artifact。
 
-Architecture decisions belong to architecture artifacts.
+架構決策屬於 architecture artifact。
 
-Implementation belongs to source code.
+實作屬於原始碼。
 
-Testing belongs to testing artifacts.
+測試屬於 testing artifact。
 
-Agents must respect layer boundaries.
+Agent 必須尊重各層之間的邊界。
 
 ---
 
 # Rule 7 — Human Override
 
-Human decisions always have higher priority than AI-generated outputs.
+人類的決策永遠優先於 AI 產出的結果。
 
-When conflicts exist, human-approved artifacts become the source of truth.
+當發生衝突時，人類核准的 artifact 即為真實來源。
 
 ---
 
 # Rule 8 — Reusability
 
-Framework assets must remain project-agnostic.
+框架資產必須維持 project-agnostic（專案無關）。
 
-Do not introduce project-specific assumptions into the core engine.
+不得將特定專案的假設帶入核心引擎（core engine）。

@@ -1,0 +1,77 @@
+{
+  "color": {
+    "primary": "",
+    "secondary": "",
+    "background": "",
+    "surface": "",
+    "border": "",
+    "text": {
+      "primary": "",
+      "secondary": "",
+      "disabled": "",
+      "inverse": ""
+    },
+    "status": {
+      "success": "",
+      "warning": "",
+      "error": "",
+      "info": ""
+    }
+  },
+  "typography": {
+    "fontFamily": {
+      "base": "",
+      "heading": "",
+      "mono": ""
+    },
+    "fontSize": {
+      "xs": "",
+      "sm": "",
+      "md": "",
+      "lg": "",
+      "xl": "",
+      "xxl": ""
+    },
+    "fontWeight": {
+      "regular": "",
+      "medium": "",
+      "bold": ""
+    },
+    "lineHeight": {
+      "tight": "",
+      "normal": "",
+      "loose": ""
+    }
+  },
+  "spacing": {
+    "xs": "",
+    "sm": "",
+    "md": "",
+    "lg": "",
+    "xl": "",
+    "xxl": ""
+  },
+  "radius": {
+    "sm": "",
+    "md": "",
+    "lg": "",
+    "full": ""
+  },
+  "shadow": {
+    "sm": "",
+    "md": "",
+    "lg": ""
+  },
+  "breakpoint": {
+    "sm": "",
+    "md": "",
+    "lg": "",
+    "xl": ""
+  },
+  "zIndex": {
+    "dropdown": "",
+    "modal": "",
+    "toast": "",
+    "tooltip": ""
+  }
+}

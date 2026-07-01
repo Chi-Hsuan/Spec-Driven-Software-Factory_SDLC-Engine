@@ -1,0 +1,17 @@
+%% erd.mmd = data-model.md 的圖形化呈現，entity 名稱與欄位必須跟 data-model.md 的 entity_id 完全一致
+%% 不要在此加入業務規則說明或型別以外的敘述 → 那些屬於 data-model.md
+%% 不要加入實際 SQL 型別（varchar(255) 等）→ 那是 schema.sql 的職責，這裡只用邏輯型別
+
+erDiagram
+    ENTITY_USER ||--o{ ENTITY_RESOURCE : owns
+
+    ENTITY_USER {
+        string id PK
+        string email
+    }
+
+    ENTITY_RESOURCE {
+        string id PK
+        string user_id FK
+        string name
+    }
