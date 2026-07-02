@@ -1,0 +1,52 @@
+# Agent → Allowed Skills
+# 來源：每個 core/agents/*.md 的 "Boundary → Allowed Skills"
+# agent-runner.md 執行時以各 Agent 檔案本身為準；本檔案為靜態索引，供人類/工具快速查閱。
+
+requirement-agent:
+  - extract-requirement
+  - generate-user-story
+  - write-srs
+
+ux-ui-agent:
+  - generate-user-flow
+  - write-wireframe
+  - generate-component-map
+
+ui-spec-generator:
+  - figma-parse
+  - extract-design-tokens
+
+architecture-agent:
+  - write-architecture
+  - write-adr
+  - generate-task-breakdown
+
+api-agent:
+  - write-openapi
+  - generate-api-contract
+  - generate-sequence-diagram
+
+data-agent:
+  - write-schema
+  - generate-erd
+
+security-agent:
+  - threat-model
+  - security-checklist
+
+backend-agent:
+  - implement-from-spec
+  - refactor-from-spec
+
+frontend-agent:
+  - implement-from-spec
+  - refactor-from-spec
+
+test-agent:
+  - generate-test-plan
+  - generate-e2e-test
+
+release-agent:
+  - generate-traceability-matrix
+  - write-final-review
+  - write-release-notes

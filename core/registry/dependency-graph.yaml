@@ -1,0 +1,83 @@
+# Agent 依賴圖
+# 來源：每個 core/agents/*.md 的 "Boundary → Read Access"
+# core/runtime/pipeline-engine.md 執行時應動態從 Agent 檔案重新推導，
+# 本檔案為靜態快照，供人類查閱與除錯，兩者不一致時以 Agent 檔案本身為準。
+
+requirement-agent:
+  depends_on: []
+
+ux-ui-agent:
+  depends_on:
+    - requirement-agent
+
+ui-spec-generator:
+  depends_on:
+    - requirement-agent   # 間接前提：Figma 為外部真實來源，非本系統 Agent 產出
+  soft_depends_on:
+    - ux-ui-agent          # user-flow.md / wireframe.md / component-map.md 僅供參考，非必要依賴
+
+architecture-agent:
+  depends_on:
+    - requirement-agent
+    - ui-spec-generator
+
+api-agent:
+  depends_on:
+    - architecture-agent
+
+data-agent:
+  depends_on:
+    - architecture-agent
+    - api-agent             # 需要 openapi.yaml
+
+security-agent:
+  depends_on:
+    - requirement-agent
+    - architecture-agent
+    - api-agent             # 需要 openapi.yaml
+    - data-agent            # 需要 data-model.md
+
+backend-agent:
+  depends_on:
+    - architecture-agent
+    - api-agent
+    - data-agent
+    - security-agent        # 需要 security-requirements.md
+
+frontend-agent:
+  depends_on:
+    - ui-spec-generator
+    - api-agent
+  # 注意：frontend-agent 不依賴 data-agent / security-agent，
+  # 因此可以比 backend-agent 更早開始執行
+
+test-agent:
+  depends_on:
+    - requirement-agent
+    - ui-spec-generator
+    - architecture-agent
+    - api-agent
+    - backend-agent
+    - frontend-agent
+
+release-agent:
+  depends_on:
+    - requirement-agent
+    - ux-ui-agent
+    - ui-spec-generator
+    - architecture-agent
+    - api-agent
+    - data-agent
+    - security-agent
+    - backend-agent
+    - frontend-agent
+    - test-agent
+
+parallel_groups:
+  - [backend-agent, frontend-agent]
+
+note: >
+  AGENT.md 的 Full SDLC Workflow 示意圖把 API / Data / Security 畫成同一個平行區塊，
+  但實際依賴關係是嚴格序列（Data 需要 api-agent 的 openapi.yaml；
+  Security 需要 api-agent 的 openapi.yaml 與 data-agent 的 data-model.md），
+  以本檔案與 core/runtime/pipeline-engine.md 為準，不以該示意圖為準。

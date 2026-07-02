@@ -1,35 +1,15 @@
 # Component Map Schema
 
----
+## Machine Validation
 
-# 1. 必要結構
+- 至少 1 個 Page，且每個 Page 有 PageRoot
+- 每個 component 必須包含：Component Name、Type（button / input / layout / modal）、Props（可為空但需存在）、State（可為空但需存在）、Events（若有互動）、Dependencies（API / 其他 component）
+- 必須存在 Parent → Child 的 Component Tree 關係
 
-## 1.1 Page 必須存在
+INVALID 條件（任一成立即拒絕交付）：
 
----
+- ❌ 任一 component 沒有 Type
 
-## 1.2 Component 必須具備
+WARNING 條件（不阻擋交付，但需標註）：
 
-每個 component 必須包含：
-
-- Component Name
-- Type（button / input / layout / modal）
-- Props（可以為空，但要存在）
-- State（可以為空，但要存在）
-- Events（如果有互動）
-- Dependencies（API / other components）
-
----
-
-## 1.3 Component Tree
-
-必須有：
-
-- Parent → Child 關係
-
----
-
-# 2. 驗證規則
-
-❌ 無 component type → invalid  
-❌ 無 hierarchy → warning  
+- ⚠ 無 hierarchy（Component Tree 關係缺失）

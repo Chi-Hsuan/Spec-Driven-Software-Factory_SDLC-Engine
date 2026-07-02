@@ -1,0 +1,37 @@
+# Skill → Prompt
+# 來源：每個 core/skills/**/*.md 的 "Capability" 段落「思考邏輯依循 ...」
+# 每個 skill 至多對應一個 prompt；05-code 的兩個 skill 無例外，皆有對應 prompt。
+
+extract-requirement: core/prompts/requirement/extract-requirement.prompt.md
+generate-user-story: core/prompts/requirement/user-story.prompt.md
+write-srs: core/prompts/requirement/srs.prompt.md
+
+generate-user-flow: core/prompts/ui/user-flow.prompt.md
+write-wireframe: core/prompts/ui/wireframe.prompt.md
+generate-component-map: core/prompts/ui/component-map.prompt.md
+figma-parse: core/prompts/ui/figma-parse.prompt.md
+extract-design-tokens: core/prompts/ui/extract-design-tokens.prompt.md
+
+write-architecture: core/prompts/architecture/architecture.prompt.md
+write-adr: core/prompts/architecture/adr.prompt.md
+generate-task-breakdown: core/prompts/architecture/task-breakdown.prompt.md
+
+write-openapi: core/prompts/api/openapi.prompt.md
+generate-api-contract: core/prompts/api/api-contract.prompt.md
+generate-sequence-diagram: core/prompts/api/sequence-diagram.prompt.md
+
+write-schema: core/prompts/data/schema.prompt.md
+generate-erd: core/prompts/data/erd.prompt.md
+
+implement-from-spec: core/prompts/code/implementation.prompt.md
+refactor-from-spec: core/prompts/code/refactor.prompt.md
+
+threat-model: core/prompts/security/threat-model.prompt.md
+security-checklist: core/prompts/security/security-checklist.prompt.md
+
+generate-test-plan: core/prompts/test/test-plan.prompt.md
+generate-e2e-test: core/prompts/test/e2e-test.prompt.md
+
+generate-traceability-matrix: core/prompts/release/traceability-matrix.prompt.md
+write-final-review: core/prompts/release/final-review.prompt.md
+write-release-notes: core/prompts/release/release-notes.prompt.md

@@ -1,0 +1,45 @@
+# Artifact → Schema
+# 來源：每個 core/skills/**/*.md 的 "Validation" 段落
+# validation-engine.md 依此找到對應 schema 檢查一份 artifact；key 以最終落地路徑為主，
+# 中間產物（不落地為 specs/ 檔案）以概念名稱標示。
+
+requirement-draft（中間產物）: core/schemas/00-requirement/requirement-draft.schema.md
+specs/00-requirement/srs.md: core/schemas/00-requirement/srs.schema.md
+
+specs/01-ui/user-flow.md: core/schemas/01-ui/user-flow.schema.md
+specs/01-ui/wireframe.md: core/schemas/01-ui/wireframe.schema.md
+specs/01-ui/component-map.md: core/schemas/01-ui/component-map.schema.md
+specs/01-ui/screen-spec.md: core/schemas/01-ui/screen-spec.schema.md
+specs/01-ui/component-spec.md: core/schemas/01-ui/component-spec.schema.md
+specs/01-ui/ui-spec.md: core/schemas/01-ui/ui-spec.schema.md
+specs/01-ui/design-tokens.json: core/schemas/01-ui/design-tokens.schema.md
+
+specs/02-architecture/architecture.md: core/schemas/02-architecture/architecture.schema.md
+specs/02-architecture/system-design.md: core/schemas/02-architecture/system-design.schema.md
+specs/02-architecture/adr/*.md: core/schemas/02-architecture/adr.schema.md
+specs/02-architecture/task-list.yaml: core/schemas/02-architecture/task-list.schema.md
+
+specs/03-api/openapi.yaml: core/schemas/03-api/openapi.schema.md
+specs/03-api/api-design.md: core/schemas/03-api/api-design.schema.md
+specs/03-api/error-codes.md: core/schemas/03-api/error-codes.schema.md
+specs/03-api/sequence-diagrams.md: core/schemas/03-api/sequence-diagrams.schema.md
+
+specs/04-data/data-model.md: core/schemas/04-data/data-model.schema.md
+specs/04-data/schema.sql: core/schemas/04-data/schema-sql.schema.md
+specs/04-data/migration-plan.md: core/schemas/04-data/migration-plan.schema.md
+specs/04-data/erd.mmd: core/schemas/04-data/erd.schema.md
+
+specs/05-security/threat-model.md: core/schemas/05-security/threat-model.schema.md
+specs/05-security/security-review.md: core/schemas/05-security/security-review.schema.md
+specs/05-security/security-requirements.md: core/schemas/05-security/security-requirements.schema.md
+
+specs/06-test/test-plan.md: core/schemas/06-test/test-plan.schema.md
+specs/06-test/test-cases.md: core/schemas/06-test/test-cases.schema.md
+specs/06-test/e2e/*.spec.ts: core/schemas/06-test/e2e.schema.md
+specs/06-test/test-report.md: core/schemas/06-test/test-report.schema.md
+
+specs/07-release/traceability-matrix.md: core/schemas/07-release/traceability-matrix.schema.md
+specs/07-release/final-review.md: core/schemas/07-release/final-review.schema.md
+specs/07-release/release-notes.md: core/schemas/07-release/release-notes.schema.md
+
+backend/frontend 原始碼: null  # 無獨立 schema；驗證方式見 core/skills/05-code/*.md 的 Validation 段落（依上游規格逐項比對）

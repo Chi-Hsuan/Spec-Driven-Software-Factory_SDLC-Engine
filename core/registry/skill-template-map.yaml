@@ -1,0 +1,122 @@
+# Skill → Template → Artifact
+# 來源：每個 core/skills/**/*.md 的 "Output" 段落
+# 一個 skill 可能填寫多個 template（例如 figma-parse 同時產出 screen-spec/component-spec/ui-spec）
+# implement-from-spec / refactor-from-spec 無 template：原始碼不是填空式文件，見該 skill 檔案的 Output 說明。
+
+extract-requirement:
+  - template: core/templates/00-requirement/requirement-draft.template.md
+    artifact: requirement-draft（中間產物，不落地為獨立 specs/ 檔案）
+
+generate-user-story:
+  - template: core/templates/00-requirement/requirement-draft.template.md
+    artifact: requirement-draft（中間產物，補寫同一份草稿）
+
+write-srs:
+  - template: core/templates/00-requirement/srs.template.md
+    artifact: specs/00-requirement/srs.md
+
+generate-user-flow:
+  - template: core/templates/01-ui/user-flow.template.md
+    artifact: specs/01-ui/user-flow.md
+
+write-wireframe:
+  - template: core/templates/01-ui/wireframe.template.md
+    artifact: specs/01-ui/wireframe.md
+
+generate-component-map:
+  - template: core/templates/01-ui/component-map.template.md
+    artifact: specs/01-ui/component-map.md
+
+figma-parse:
+  - template: core/templates/01-ui/screen-spec.template.md
+    artifact: specs/01-ui/screen-spec.md
+  - template: core/templates/01-ui/component-spec.template.md
+    artifact: specs/01-ui/component-spec.md
+  - template: core/templates/01-ui/ui-spec.template.md
+    artifact: specs/01-ui/ui-spec.md
+
+extract-design-tokens:
+  - template: core/templates/01-ui/design-tokens.template.json
+    artifact: specs/01-ui/design-tokens.json
+
+write-architecture:
+  - template: core/templates/02-architecture/architecture.template.md
+    artifact: specs/02-architecture/architecture.md
+  - template: core/templates/02-architecture/system-design.template.md
+    artifact: specs/02-architecture/system-design.md
+
+write-adr:
+  - template: core/templates/02-architecture/adr.template.md
+    artifact: specs/02-architecture/adr/{編號}-{短標題}.md
+
+generate-task-breakdown:
+  - template: core/templates/02-architecture/task-list.template.yaml
+    artifact: specs/02-architecture/task-list.yaml
+
+write-openapi:
+  - template: core/templates/03-api/openapi.template.yaml
+    artifact: specs/03-api/openapi.yaml
+
+generate-api-contract:
+  - template: core/templates/03-api/api-design.template.md
+    artifact: specs/03-api/api-design.md
+  - template: core/templates/03-api/error-codes.template.md
+    artifact: specs/03-api/error-codes.md
+
+generate-sequence-diagram:
+  - template: core/templates/03-api/sequence-diagrams.template.md
+    artifact: specs/03-api/sequence-diagrams.md
+
+write-schema:
+  - template: core/templates/04-data/data-model.template.md
+    artifact: specs/04-data/data-model.md
+  - template: core/templates/04-data/schema.template.sql
+    artifact: specs/04-data/schema.sql
+  - template: core/templates/04-data/migration-plan.template.md
+    artifact: specs/04-data/migration-plan.md
+
+generate-erd:
+  - template: core/templates/04-data/erd.template.mmd
+    artifact: specs/04-data/erd.mmd
+
+threat-model:
+  - template: core/templates/05-security/threat-model.template.md
+    artifact: specs/05-security/threat-model.md
+
+security-checklist:
+  - template: core/templates/05-security/security-review.template.md
+    artifact: specs/05-security/security-review.md
+  - template: core/templates/05-security/security-requirements.template.md
+    artifact: specs/05-security/security-requirements.md
+
+implement-from-spec:
+  - template: null
+    artifact: backend/frontend 原始碼（依 task.type 決定目錄）+ implementation-notes.md / 元件實作筆記
+
+refactor-from-spec:
+  - template: null
+    artifact: backend/frontend 原始碼（既有檔案原地調整）+ implementation-notes.md / 元件實作筆記
+
+generate-test-plan:
+  - template: core/templates/06-test/test-plan.template.md
+    artifact: specs/06-test/test-plan.md
+  - template: core/templates/06-test/test-cases.template.md
+    artifact: specs/06-test/test-cases.md
+
+generate-e2e-test:
+  - template: core/templates/06-test/e2e/example.spec.template.ts
+    artifact: specs/06-test/e2e/*.spec.ts
+  - template: core/templates/06-test/test-report.template.md
+    artifact: specs/06-test/test-report.md
+
+generate-traceability-matrix:
+  - template: core/templates/07-release/traceability-matrix.template.md
+    artifact: specs/07-release/traceability-matrix.md
+
+write-final-review:
+  - template: core/templates/07-release/final-review.template.md
+    artifact: specs/07-release/final-review.md
+
+write-release-notes:
+  - template: core/templates/07-release/release-notes.template.md
+    artifact: specs/07-release/release-notes.md

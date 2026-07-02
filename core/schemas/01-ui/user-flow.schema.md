@@ -1,40 +1,17 @@
 # User Flow Schema
 
----
+## Machine Validation
 
-# 1. 目的
-定義 user-flow.md 必須包含的結構
-
----
-
-# 2. 必要結構
-
-## 2.1 Flow 必須存在
 - 至少 1 個 Flow
+- 每個 Flow 必須包含：Flow 名稱、步驟（Start → End）、成功路徑（Happy Path）、失敗路徑（Error Path）；分支條件若存在也需列出
+- 每個 step 必須標註為「使用者行為」或「系統行為」其中之一，且有明確順序
 
----
+INVALID 條件（任一成立即拒絕交付）：
 
-## 2.2 每個 Flow 必須包含
+- ❌ 無任何 Flow
+- ❌ Flow 沒有任何 step
+- ❌ step 未標註行為主體
 
-- Flow 名稱
-- 步驟（Start → End）
-- 成功路徑（Happy Path）
-- 失敗路徑（Error Path）
-- 分支條件（如果有）
+WARNING 條件（不阻擋交付，但需標註）：
 
----
-
-## 2.3 步驟格式
-
-每個 step 必須是：
-
-- 使用者行為 OR 系統行為
-- 有順序
-
----
-
-# 3. 驗證規則
-
-❌ 無 Flow → invalid  
-❌ 無 step → invalid  
-❌ 無 success path → warning  
+- ⚠ 無 success path
