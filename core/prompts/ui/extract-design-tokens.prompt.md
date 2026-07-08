@@ -4,6 +4,7 @@
 
 ## Thinking Strategy
 
+0. 先確認該 Figma 檔案是否已連結 library（Team Library）：若有，優先讀取 library 的 variable collection 定義，其命名與分類通常已具備明確語意，可直接對應到 token 分類；若無 library，才依下列步驟自行從零散 style 歸納。
 1. 先掃過 Figma 的所有 color styles，問「這個顏色被重複使用嗎」，被大量重用的才視為 token，一次性用色可忽略。
 2. 針對 text styles，拆解成 fontFamily / fontSize / fontWeight / lineHeight 四個獨立面向，而不是整組當成一個不可分割的樣式。
 3. 針對間距，觀察是否存在一致的數值尺度（如 4/8/16/24px），若有規律則歸納為 spacing scale，而非逐一列點。
@@ -13,6 +14,7 @@
 
 ## Reasoning Rules
 
+- **Library 優先原則**：若檔案已連結 library，其 variable 定義視為比零散 style 更權威的來源，應優先採用；僅在無 library 時才套用下列重用性判準自行歸納。
 - **重用性判準**：只有被多處使用的樣式數值才值得成為 token，避免 token 清單膨脹成流水帳。
 - **分類單一原則**：一個數值只能歸屬一個 token 分類，不可同時出現在 color 與 shadow 底下。
 - **誠實標記來源**：Figma 未明確定義的欄位，寧可留空並記錄，也不可憑空捏造數值。
